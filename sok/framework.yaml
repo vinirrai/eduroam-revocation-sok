@@ -1,0 +1,40 @@
+# Draft framework. Adapted from Chuat et al. (EuroS&P 2020); task E2 maps their 19 criteria onto this list.
+
+constraints:   # what the deployment forces on any revocation mechanism
+  C1: The device has no network access until the login finishes (it cannot fetch a CRL or ask OCSP).
+  C2: Only the home institution can verify a user; visited campuses and federation proxies only forward by realm.
+  C3: Device credentials are provisioned once and last years.
+  C4: The outer identity is meant to be anonymous, yet abuse must be traceable through the home institution.
+
+properties:    # the columns of table.csv
+  P1_window:
+    name: Revocation window
+    question: How long after the revocation decision does the credential still work?
+  P2_freshness:
+    name: Freshness bound
+    question: What cryptographically bounds staleness (nonce, nextUpdate, notAfter, accumulator epoch)?
+  P3_online:
+    name: Who must be online
+    question: Which party must reach which service at login time?
+  P4_prenetwork:
+    name: Works before network access
+    question: Can the device-side verifier check status under C1?
+  P5_failmode:
+    name: Failure mode
+    question: Soft fail (accept when status is unavailable) or hard fail?
+  P6_federation:
+    name: Works across the proxy chain
+    question: Does it work through RADIUS proxies without changes to them?
+  P7_learns:
+    name: What the checker learns
+    question: What does the verifier or status responder learn about the user and their location?
+  P8_accountability:
+    name: Abuse still traceable
+    question: Can the home institution still identify a misbehaving user?
+  P9_cost:
+    name: Deployment and per-login cost
+    question: Client changes, server changes, per-login latency and bytes, issuer workload.
+
+directions:
+  student: Revoking a user's device credential (verifier = home RADIUS server, online).
+  server: Revoking the home server's certificate (verifier = device, offline before login).

@@ -1,0 +1,81 @@
+# Starting corpus. All venues verified against the course list (Oct 12, 2026).
+# status: unread | skimmed | read | coded (entered into table.csv)
+- id: hue21
+  cite: "Hue et al. All your Credentials are Belong to Us: On Insecure WPA2-Enterprise Configurations. ACM CCS 2021"
+  role: deployed system
+  why: Closest eduroam study. Covers configuration and credential theft, not lifecycle or revocation.
+  status: unread
+  notes: ""
+- id: goldberg24
+  cite: "Goldberg et al. RADIUS/UDP Considered Harmful. USENIX Security 2024"
+  role: deployed system
+  why: Security of the RADIUS hops between campuses; why eduroam's EAP logins are unaffected by Blast-RADIUS.
+  status: unread
+  notes: ""
+- id: chuat20
+  cite: "Chuat, Abdou, Sasse, Sprenger, Basin, Perrig. SoK: Delegation and Revocation, the Missing Links in the Web's Chain of Trust. IEEE EuroS&P 2020"
+  role: framework
+  why: Source of the 19-criteria revocation framework adapted in framework.yaml.
+  status: unread
+  notes: ""
+- id: clark13
+  cite: "Clark and van Oorschot. SoK: SSL and HTTPS: Revisiting Past Challenges and Evaluating Certificate Trust Model Enhancements. IEEE S&P 2013"
+  role: framework
+  why: Template for systematizing a trust model.
+  status: unread
+  notes: ""
+- id: larisch17
+  cite: "Larisch et al. CRLite: A Scalable System for Pushing All TLS Revocations to All Browsers. IEEE S&P 2017"
+  role: mechanism
+  why: Pushed revocation; could a laptop carry revocation state before it is online?
+  status: unread
+  notes: ""
+- id: smith20
+  cite: "Smith, Dickinson, Seamons. Let's Revoke: Scalable Global Certificate Revocation. NDSS 2020"
+  role: mechanism
+  why: Compact revocation for constrained clients; second data point next to CRLite.
+  status: unread
+  notes: ""
+- id: basin18
+  cite: "Basin et al. A Formal Analysis of 5G Authentication. ACM CCS 2018"
+  role: comparison
+  why: Cellular roaming, where a home network authenticates you anywhere; SUCI is the analog of an anonymous outer identity.
+  status: unread
+  notes: ""
+- id: jiang12
+  cite: "Jiang et al. Ghost Domain Names: Revoked Yet Still Resolvable. NDSS 2012"
+  role: comparison
+  why: The same revoked-but-still-works pattern in another federated system.
+  status: unread
+  notes: ""
+- id: cl02
+  cite: "Camenisch and Lysyanskaya. Dynamic Accumulators and Application to Efficient Revocation of Anonymous Credentials. CRYPTO 2002"
+  role: anonymous revocation
+  why: Base construction for revoking users who stay anonymous; target of the accumulator prototype (task D2).
+  status: unread
+  notes: ""
+- id: bs04
+  cite: "Boneh and Shacham. Group Signatures with Verifier-Local Revocation. ACM CCS 2004"
+  role: anonymous revocation
+  why: Lets the visited campus check revocation itself; cost grows with the revocation list.
+  status: unread
+  notes: ""
+- id: cmz14
+  cite: "Chase, Meiklejohn, Zaverucha. Algebraic MACs and Keyed-Verification Anonymous Credentials. ACM CCS 2014"
+  role: anonymous revocation
+  why: Fits eduroam's case where issuer and checker are the same school.
+  status: unread
+  notes: ""
+- id: davidson18
+  cite: "Davidson et al. Privacy Pass: Bypassing Internet Challenges Anonymously. PETS 2018"
+  role: anonymous revocation
+  why: Short-lived anonymous tokens as an alternative to revocation.
+  status: unread
+  notes: ""
+
+# Candidates to verify before adding (venue checked, not yet read):
+# - Baldimtsi et al. Accumulators with Applications to Anonymity-Preserving Revocation. IEEE EuroS&P 2017
+# - Rosenberg, White, Garman, Miers. zk-creds. IEEE S&P 2023
+# Background only (not on the venue list): RFC 7593 (eduroam), RFC 5216 and RFC 9190 (EAP-TLS),
+# RFC 6614 (RadSec), RFC 6960 (OCSP), RFC 6066 (status_request), Perkovic et al. (eduroam privacy),
+# AUDIT@eduroam (SBSeg).

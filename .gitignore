@@ -1,0 +1,10 @@
+testbed/pki/
+testbed/pki_srv/
+testbed/ldap/
+testbed/rad_*/
+testbed/dbg_*/
+testbed/srv/
+testbed/clients/
+testbed/results/
+__pycache__/
+*.log

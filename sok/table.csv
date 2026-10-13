@@ -1,0 +1,11 @@
+mechanism,P1_window,P2_freshness,P3_online,P4_prenetwork,P5_failmode,P6_federation,P7_learns,P8_accountability,P9_cost,evidence,confidence
+M0_directory,,,,,,,,,,,
+M1_crl,,,,,,,,,,,
+M2_ocsp,,,,,,,,,,,
+M3_stapling,,,,,,,,,,,
+M4_shortlived,,,,,,,,,,,
+M5_pushed,,,,,,,,,,,
+M6_accumulator,,,,,,,,,,,
+M7_vlr,,,,,,,,,,,
+M8_kvac,,,,,,,,,,,
+M9_tokens,,,,,,,,,,,

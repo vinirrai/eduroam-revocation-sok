@@ -1,0 +1,18 @@
+{
+ "TLS 1.2": {
+  "tls13_enabled": false,
+  "login_ok": true,
+  "packets": 8,
+  "bytes_from_laptop": 1317,
+  "name_visible_to_relays": true,
+  "version_hint": "SSL: Using TLS version TLSv1.2"
+ },
+ "TLS 1.3": {
+  "tls13_enabled": true,
+  "login_ok": true,
+  "packets": 8,
+  "bytes_from_laptop": 1414,
+  "name_visible_to_relays": false,
+  "version_hint": "SSL: Using TLS version TLSv1.3"
+ }
+}

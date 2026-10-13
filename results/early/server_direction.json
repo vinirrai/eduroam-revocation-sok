@@ -1,0 +1,34 @@
+[
+ {
+  "scenario": "Valid server, no staple",
+  "cert": "srv_good",
+  "stapled_status": null,
+  "ocsp=0": true,
+  "ocsp=1": true,
+  "ocsp=2": false
+ },
+ {
+  "scenario": "Revoked server, no staple",
+  "cert": "srv_leaked",
+  "stapled_status": null,
+  "ocsp=0": true,
+  "ocsp=1": true,
+  "ocsp=2": false
+ },
+ {
+  "scenario": "Revoked server, staples its status",
+  "cert": "srv_leaked",
+  "stapled_status": "pki_srv/srv_leaked.crt: revoked",
+  "ocsp=0": true,
+  "ocsp=1": false,
+  "ocsp=2": false
+ },
+ {
+  "scenario": "Valid server, staples its status",
+  "cert": "srv_good",
+  "stapled_status": "pki_srv/srv_good.crt: good",
+  "ocsp=0": true,
+  "ocsp=1": true,
+  "ocsp=2": true
+ }
+]

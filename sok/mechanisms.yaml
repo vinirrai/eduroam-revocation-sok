@@ -1,0 +1,61 @@
+# The ten mechanisms, described as cryptographic objects. Rows of table.csv.
+- id: M0_directory
+  name: Directory lookup at login
+  object: None. A database query from the RADIUS server. Non-crypto baseline.
+  signer: n/a
+  freshness: Live query
+  sources: [testbed directory mechanism]
+- id: M1_crl
+  name: Certificate revocation list
+  object: CA-signed list of revoked serial numbers with thisUpdate/nextUpdate
+  signer: CA
+  freshness: Bounded by publication period plus verifier reload period
+  sources: [chuat20, clark13, testbed crl mechanism]
+- id: M2_ocsp
+  name: OCSP
+  object: CA- or responder-signed status for one certificate, optional nonce
+  signer: OCSP responder
+  freshness: Nonce or producedAt
+  sources: [chuat20, testbed ocsp mechanism]
+- id: M3_stapling
+  name: OCSP stapling
+  object: The same signed OCSP response, carried by the server in the TLS handshake
+  signer: OCSP responder
+  freshness: Until nextUpdate of the stapled response (replay window, task C2)
+  sources: [chuat20, RFC 6066, RFC 9190, server_exp]
+- id: M4_shortlived
+  name: Short-lived certificates
+  object: CA signature with a short notAfter
+  signer: CA
+  freshness: Certificate lifetime
+  sources: [chuat20, testbed shortlived]
+- id: M5_pushed
+  name: Pushed revocation sets
+  object: Compact filter cascade of all revocations, signed and distributed ahead of time
+  signer: Aggregator or CA
+  freshness: Distribution period
+  sources: [larisch17, smith20]
+- id: M6_accumulator
+  name: Dynamic accumulator
+  object: One value committing to all valid users; the user proves membership in zero knowledge
+  signer: Issuer maintains the accumulator
+  freshness: Accumulator epoch; witness must be updated after each revocation
+  sources: [cl02, task D2 prototype]
+- id: M7_vlr
+  name: Verifier-local revocation group signatures
+  object: Group signature checked against a revocation token list held by the verifier
+  signer: Group member
+  freshness: Revocation list version at the verifier
+  sources: [bs04]
+- id: M8_kvac
+  name: Keyed-verification anonymous credentials
+  object: Algebraic MAC credential shown in zero knowledge; issuer and verifier share the key
+  signer: Issuer (MAC key)
+  freshness: Credential expiry or epoch
+  sources: [cmz14]
+- id: M9_tokens
+  name: Short-lived anonymous tokens
+  object: Blindly issued one-time tokens (VOPRF)
+  signer: Issuer
+  freshness: Token epoch
+  sources: [davidson18]

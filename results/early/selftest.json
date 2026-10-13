@@ -1,0 +1,18 @@
+{
+ "baseline": {
+  "before_graduation": true,
+  "after_graduation": true
+ },
+ "crl": {
+  "before_graduation": true,
+  "after_graduation": true
+ },
+ "ocsp": {
+  "before_graduation": true,
+  "after_graduation": false
+ },
+ "directory": {
+  "before_graduation": true,
+  "after_graduation": false
+ }
+}
