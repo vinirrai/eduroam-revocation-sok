@@ -1,0 +1,1 @@
+# eduroam-revocation-sok
