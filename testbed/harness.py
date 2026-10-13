@@ -122,6 +122,10 @@ def graduate(name):
 
 
 MECHS = ["baseline", "crl", "ocsp", "directory"]
+# Selftest graduates a user and retries after 3 s. CRL still lets them on because
+# FreeRADIUS reloads CRLs at most every 300 s (see docs/PLAN.md section 5).
+EXPECTED = {"baseline": (True, True), "crl": (True, True),
+            "ocsp": (True, False), "directory": (True, False)}
 
 
 def selftest():
@@ -144,6 +148,10 @@ def selftest():
         print(m, out[m], flush=True)
     ocsp.stop()
     json.dump(out, open(os.path.join(RES, "selftest.json"), "w"), indent=1)
+    bad = [m for m in MECHS if (out[m]["before_graduation"], out[m]["after_graduation"]) != EXPECTED[m]]
+    print("selftest", "FAILED: " + ", ".join(bad) if bad else "passed", flush=True)
+    if bad:
+        sys.exit(1)
 
 
 def latency(n=40):

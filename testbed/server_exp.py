@@ -29,7 +29,8 @@ def staple(name):
     sh(f"openssl ocsp -index {P}/index.txt -CA {P}/ca.crt -rsigner {P}/ocsp.crt -rkey {P}/ocsp.key "
        f"-reqin {req} -respout {resp} -ndays 1")
     st = sh(f"openssl ocsp -respin {resp} -issuer {P}/ca.crt -cert {P}/{name}.crt -CAfile {P}/ca.crt")
-    return resp, st.stdout.strip().splitlines()[0] if st.stdout else "?"
+    line = st.stdout.strip().splitlines()[0] if st.stdout else "?"
+    return resp, line.replace(TB + "/", "")  # keep paths relative to testbed/
 
 
 open(f"{W}/eap_user", "w").write('* TLS\n')
