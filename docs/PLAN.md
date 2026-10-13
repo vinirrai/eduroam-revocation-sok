@@ -69,7 +69,7 @@ Ports: FreeRADIUS auth 18120, hostapd RADIUS 18130, privacy relay 18131, OCSP re
 
 ## 5. What already works (and gotchas learned the hard way)
 
-Run order: `./pki.sh init && ./ldap.sh start && python3 harness.py selftest`.
+Run order: `./pki.sh init && ./ldap.sh start && python3 harness.py selftest`. On macOS (or anywhere with Docker) use `./run_all.sh selftest` from the repo root, which runs the same steps in an Ubuntu 24.04 container.
 
 - **Mechanisms in `gen.py`:** `baseline` (default FreeRADIUS EAP-TLS, no revocation checks), `crl` (check_crl + ca_path_reload_interval), `ocsp` (FreeRADIUS ocsp block against `openssl ocsp`), `directory` (check-eap-tls virtual server queries LDAP for employeeType of the cert CN), `all`. Short-lived certs use `baseline` with a cert issued via `pki.sh issue name +SECONDS`.
 - **"Graduation"** = `pki.sh revoke <name>` (CA index + CRL republished) and `ldap.sh set <name> alumni`.
@@ -92,7 +92,7 @@ Run order: `./pki.sh init && ./ldap.sh start && python3 harness.py selftest`.
 Milestones: framework Oct 14 to 26 · mechanisms Oct 27 to Nov 9 · measurements Nov 10 to 23 · writing and demo Nov 24 on.
 
 ### A. Make the testbed solid
-- [ ] A1. Package: `testbed/setup.sh`, a `Makefile` or `run_all.sh`, pin versions in README, `.gitignore` generated dirs.
+- [x] A1. Package: `testbed/setup.sh`, a `Makefile` or `run_all.sh`, pin versions in README, `.gitignore` generated dirs. Done Oct 13: `Dockerfile` + `run_all.sh` (Ubuntu 24.04 container, works on macOS); selftest, server and privacy reproduce the early results on arm64.
 - [ ] A2. Refactor harness into a small module (`tb/` package): server lifecycle, PKI, directory, client, experiment runners. Keep current CLI working.
 - [ ] A3. Repeatability: every experiment takes `--trials N --seed S`, writes one JSON per run with machine info, tool versions and config hash.
 
